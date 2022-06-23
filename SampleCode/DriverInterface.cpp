@@ -87,7 +87,7 @@ HRESULT EGAVDeviceProperties::SetEncoderType(bool inHEVC)
 
 HRESULT EGAVDeviceProperties::SetHDRTonemapping(bool inEnable)
 {
-	if (mDeviceType != DeviceType::GC4K60SPlus)
+	if (mDeviceType != DeviceType::GC4K60ProMK2)
 		return E_FAIL;
 
 	HR_CHKRET_POINTER(mICustomPropertySet);
