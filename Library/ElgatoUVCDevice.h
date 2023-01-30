@@ -37,8 +37,8 @@ SOFTWARE.
 #endif
 
 
-const EGAVDeviceID deviceIDHD60SPlus (EGAVBusType::USB, 0x0FD9, 0x06A); //!< HD60 S+
-const EGAVDeviceID deviceIDHD60X     (EGAVBusType::USB, 0x0FD9, 0x082); //!< HD60 X
+inline const EGAVDeviceID deviceIDHD60SPlus (EGAVBusType::USB, 0x0FD9, 0x06A); //!< HD60 S+
+inline const EGAVDeviceID deviceIDHD60X     (EGAVBusType::USB, 0x0FD9, 0x082); //!< HD60 X
 
 inline bool IsNewDeviceType(const EGAVDeviceID& inDeviceID) { return (inDeviceID == deviceIDHD60X); }
 
