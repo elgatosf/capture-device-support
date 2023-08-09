@@ -1,7 +1,7 @@
 /*
 MIT License
 
-Copyright (c) 2022 Corsair Memory, Inc.
+Copyright (c) 2022-23 Corsair Memory, Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -44,8 +44,8 @@ public:
 	enum class DeviceType 
 	{
 		None = 0,
-		GC4K60ProMK2,	//!< 4K60 Pro MK.2: PCI\VEN_12AB& DEV_0710& SUBSYS_000E1CFA
-		GC4K60SPlus		//!< 4K60 S+:		USB\VID_0FD9&PID_0068 or USB\VID_0FD9&PID_0075
+		GC4K60ProMK2, //!< 4K60 Pro MK.2: PCI\VEN_12AB& DEV_0710& SUBSYS_000E1CFA
+		GC4K60SPlus   //!< 4K60 S+:       USB\VID_0FD9&PID_0068 or USB\VID_0FD9&PID_0075
 	};
 
 	//! @brief 

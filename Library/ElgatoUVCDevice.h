@@ -1,7 +1,7 @@
-﻿/*
+/*
 MIT License
 
-Copyright (c) 2022 Corsair Memory, Inc.
+Copyright (c) 2022-23 Corsair Memory, Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -25,6 +25,7 @@ SOFTWARE.
 #pragma once
 
 #include <memory>
+#include <vector>
 
 #include "EGAVResult.h"
 #include "EGAVDevice.h"
@@ -36,11 +37,19 @@ SOFTWARE.
 #include "mac/EGAVHIDImplementation.h"
 #endif
 
+// Supported devices
+inline const EGAVDeviceID deviceIDHD60SPlus (EGAVBusType::USB, 0x0FD9, 0x006A); //!< HD60 S+
+inline const EGAVDeviceID deviceIDHD60X     (EGAVBusType::USB, 0x0FD9, 0x0082); //!< HD60 X
+inline const EGAVDeviceID deviceIDHD60XRev2 (EGAVBusType::USB, 0x0FD9, 0x008A); //!< HD60 X Rev. 2
+// EXTEND_DEVICES
 
-inline const EGAVDeviceID deviceIDHD60SPlus (EGAVBusType::USB, 0x0FD9, 0x06A); //!< HD60 S+
-inline const EGAVDeviceID deviceIDHD60X     (EGAVBusType::USB, 0x0FD9, 0x082); //!< HD60 X
 
-inline bool IsNewDeviceType(const EGAVDeviceID& inDeviceID) { return (inDeviceID == deviceIDHD60X); }
+//! @return Device IDs of supported Elgato UVC devices
+std::vector<EGAVDeviceID> GetElgatoUVCDeviceIDs();
+
+
+//! @return true for new devices with new USB chipset
+bool IsNewDeviceType(const EGAVDeviceID& inDeviceID);
 
 
 
@@ -54,13 +63,13 @@ class ElgatoUVCDevice
 public:
 	ElgatoUVCDevice(std::shared_ptr<EGAVHIDInterface> hid, bool isNewDeviceType);
 
-	//! @brief Works with HD60 S+ and HD60 X
+	//! @brief Works with HD60 S+, HD60 X or newer
 	void SetHDRTonemappingEnabled(bool inEnable);
 
-	//! @brief Works with HD60 S+ and HD60 X
+	//! @brief Works with HD60 S+, HD60 X or newer
 	EGAVResult GetHDMIHDRStatusPacket(HDMI_GENERIC_INFOFRAME& outFrame);
 
-	//! @brief Works with HD60 S+ and HD60 X
+	//! @brief Works with HD60 S+, HD60 X or newer
 	EGAVResult IsVideoHDR(bool& outIsHDR);
 
 
@@ -68,7 +77,7 @@ private:
 	EGAVResult WriteI2cData(uint8_t inI2CAddress, uint8_t inRegister, uint8_t* inData, uint8_t inLength);
 	EGAVResult ReadI2cData(uint8_t inI2CAddress, uint8_t inRegister, uint8_t* outData, uint8_t inLength);
 
-	bool mNewDeviceType = false; //!< true: HD60 X , false: HD60 S+
+	bool mNewDeviceType = false; //!< true: HD60 X and newer devices , false: HD60 S+
 
 	std::shared_ptr<EGAVHIDInterface> mHIDImpl;
 	std::recursive_mutex mHIDMutex;

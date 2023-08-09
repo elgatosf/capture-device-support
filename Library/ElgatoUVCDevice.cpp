@@ -1,7 +1,7 @@
-﻿/*
+/*
 MIT License
 
-Copyright (c) 2022 Corsair Memory, Inc.
+Copyright (c) 2022-23 Corsair Memory, Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -71,10 +71,26 @@ enum class HID_REPORT_ID
 	I2C_READ_SET_ID = 9,
 	I2C_READ_GET_ID = 10,
 	I2C_WRITE_ID = 11
-}; 
+};
 
 const int I2C_BUFFER_HEADER_SIZE	=  4;
 const int MAX_COMM_READ_BUFFER_SIZE	= 32;
+
+
+//==============================================================================
+// # Helpers
+//==============================================================================
+
+std::vector<EGAVDeviceID> GetElgatoUVCDeviceIDs()
+{
+	std::vector<EGAVDeviceID> devices {deviceIDHD60SPlus, deviceIDHD60X, deviceIDHD60XRev2 };
+	// EXTEND_DEVICES
+	return devices;
+}
+
+//! @return true for new USB chipset
+bool IsNewDeviceType(const EGAVDeviceID& inDeviceID) { return (inDeviceID != deviceIDHD60SPlus); }
+
 
 
 //==============================================================================

@@ -24,7 +24,6 @@ Supported features
 
 Limitations
 -----------
-
 The library was written for macOS and Windows.
 However, the sample project was only built with Visual Studio 2019 and tested on Windows so far.
 
