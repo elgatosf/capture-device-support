@@ -34,7 +34,7 @@ SOFTWARE.
 // # Constants
 //==============================================================================
 
-const EGAVDeviceID& selectedDeviceID = deviceIDHD60SPlus; // deviceIDHD60SPlus or deviceIDHD60X
+const EGAVDeviceID& selectedDeviceID = deviceIDHD60SPlus; // Select your device here
 
 
 //==============================================================================
@@ -52,6 +52,7 @@ int main()
 	if (res.Failed())
 	{
 		std::cout << "InitHIDInterface() failed. Do you have the correct device connected?" << std::endl << std::endl;
+		std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 	}
 	else
 	{
