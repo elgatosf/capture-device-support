@@ -127,7 +127,7 @@ EGAVResult ElgatoUVCDevice::ReadI2cData(uint8_t inI2CAddress, uint8_t inRegister
 				error_printf("ReadHID() FAILED for I2C address 0x%02x, register 0x%02x", inI2CAddress, inRegister);
 			else
 			{
-				int dataLen = min((int)inLength, (int)(inputMessage.size() - 1));
+				int dataLen = std::min((int)inLength, (int)(inputMessage.size() - 1));
 				memcpy(outData, inputMessage.data() + 1, dataLen);
 			}
 		}
