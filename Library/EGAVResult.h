@@ -42,6 +42,7 @@ SOFTWARE.
 	// FMB NOTE: For some strange reason <WinSock2.h> must be before <Windows.h>. 
 	// This is only necessary because contents of <WinSock2.h> are required in other code files.
 	// However, if <WinSock2.h> is include somewhere it must be guaranteded that <Windows.h> was never include before.
+	#define NOMINMAX
 	#include <WinSock2.h>	// for sockaddr_in
 	#include <Windows.h>
 #endif
