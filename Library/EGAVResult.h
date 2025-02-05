@@ -38,7 +38,7 @@ SOFTWARE.
 //------------------------------------------------------------------------------
 
 #include <string>
-#if _UP_WINDOWS 
+#if defined(_WIN32)
 	// FMB NOTE: For some strange reason <WinSock2.h> must be before <Windows.h>. 
 	// This is only necessary because contents of <WinSock2.h> are required in other code files.
 	// However, if <WinSock2.h> is include somewhere it must be guaranteded that <Windows.h> was never include before.
@@ -50,7 +50,7 @@ SOFTWARE.
 //#include "EGAVFeatures.h" // for EGAV_API
 
 
-#define EVH_AVOID_UNNEEDED_COPY_CONSTRUCTORS 			(!_UP_WINDOWS)	//!< 0 - explicit copy constructors: required for .NET frontends connected via SWIG e.g. 4KCU and EVH Test App
+#define EVH_AVOID_UNNEEDED_COPY_CONSTRUCTORS 			(!defined(_WIN32))	//!< 0 - explicit copy constructors: required for .NET frontends connected via SWIG e.g. 4KCU and EVH Test App
 																		//!< 1 - to avoid "warning: definition of implicit copy constructor for different classes e.g.
 																		//! 'EGAVAudioSampleType' is deprecated because it has a user-declared copy assignment operator [-Wdeprecated-copy]"
 
@@ -141,7 +141,7 @@ public:
 	//------------------------------------------------------------------------------
 	// Initialization
 	//------------------------------------------------------------------------------
-#if _UP_WINDOWS
+#if defined(_WIN32)
 
 	//! Init with HRESULT (EGAVResultCustomType::Hresult)
 	void InitWithHresult(HRESULT hr);
