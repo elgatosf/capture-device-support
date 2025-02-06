@@ -56,9 +56,3 @@ add_executable (EGAVHIDSample
 
 target_include_directories(EGAVHIDSample PRIVATE ${FRAMEWORK_FOLDER})
 target_compile_definitions(EGAVHIDSample PUBLIC EGAV_API)
-
-if(WIN32)
-    target_compile_definitions(EGAVHIDSample PUBLIC _UP_WINDOWS=1)
-elseif(APPLE)
-    target_compile_definitions(EGAVHIDSample PUBLIC _UP_MAC=1)
-endif()

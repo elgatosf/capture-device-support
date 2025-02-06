@@ -31,7 +31,7 @@ SOFTWARE.
 //==============================================================================
 
 #include "EGAVResult.h"
-#if _UP_WINDOWS
+#if defined(_WIN32)
 #include <winerror.h> // for HRESULT
 #endif
 
@@ -51,7 +51,7 @@ EGAVResult::EGAVResult(EGAVResultCustomType inCustomResultType, int64_t inCustom
 	mCustomResultCode = inCustomResultCode;
 }
 
-#if _UP_WINDOWS
+#if defined(_WIN32)
 void EGAVResult::InitWithHresult(HRESULT hr)
 {
 	mResultCode       = ErrCustom;
@@ -77,10 +77,10 @@ bool EGAVResult::Succeeded() const
 	{
 		switch (mCustomResultType)
 		{
-#if _UP_WINDOWS
+#if defined(_WIN32)
 		case EGAVResultCustomType::Hresult:		return SUCCEEDED(mCustomResultCode);
 		case EGAVResultCustomType::WinError:	return (mCustomResultCode == ERROR_SUCCESS) ? true : false;
-#elif _UP_MAC
+#elif defined(__APPLE__)
 		case EGAVResultCustomType::Mac:			return (mCustomResultCode == 0) ? true : false;
 #endif
 		case EGAVResultCustomType::MainConcept:
